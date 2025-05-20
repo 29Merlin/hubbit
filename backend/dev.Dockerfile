@@ -1,4 +1,4 @@
-FROM rust:1.76
+FROM rust:1.82
 
 ENV TZ=Europe/Stockholm
 ENV DEBIAN_FRONTEND=noninteractive
@@ -7,8 +7,11 @@ RUN apt update && apt install -y tzdata postgresql
 
 WORKDIR /app
 
-RUN cargo install sqlx-cli --version 0.7.3
+RUN cargo install sqlx-cli --version 0.7.3 --locked
 RUN cargo install cargo-watch
+
+
+WORKDIR /app
 
 ENV PORT=8080
 EXPOSE 8080
