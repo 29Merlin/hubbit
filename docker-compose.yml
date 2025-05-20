@@ -36,14 +36,14 @@ services:
       - /app/target
     depends_on:
       - "hubbit-db"
-    command: ["./wait-for-postgres.sh", "hubbit-db", "${PG_PASSWORD}", "${PG_USERNAME}", "sh", "-c", "cargo sqlx migrate run && cargo watch -x run"]
+    command: [ "./wait-for-postgres.sh", "hubbit-db", "hubbit", "hubbit", "sh", "-c", "cargo sqlx migrate run && cargo watch -x run" ]
 
   hubbit-db:
     image: postgres:13.2
     environment:
-      POSTGRES_DB: ${PG_DATABASE}
-      POSTGRES_USER: ${PG_USERNAME}
-      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: hubbit
+      POSTGRES_USER: hubbit
+      POSTGRES_PASSWORD: hubbit
     ports:
       - ${PG_LOCAL_PORT}:5432
 
