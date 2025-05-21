@@ -46,7 +46,7 @@ services:
         done;
         echo "✅ postgres up, running migrations";
         cargo sqlx migrate run;
-        echo "✅ migrations done, running cargo watch";
+        echo "✅ migrations done";
         cargo watch -x run;
         echo "✅ cargo watch up";
       '
@@ -58,7 +58,7 @@ services:
       POSTGRES_USER: hubbit
       POSTGRES_PASSWORD: hubbit
     ports:
-      - ${PG_LOCAL_PORT}:5432
+      - 5454:5432
 
   hubbit-redis:
     image: redis:6.2
